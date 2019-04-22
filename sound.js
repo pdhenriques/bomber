@@ -1,0 +1,11 @@
+class sound {
+    
+    constructor( ) {
+
+    }
+
+    update( ) {
+
+    }
+    
+}

@@ -1,0 +1,11 @@
+class UI {
+    
+    constructor( ) {
+
+    }
+
+    update( ) {
+
+    }
+    
+}
