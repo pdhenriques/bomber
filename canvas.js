@@ -4,7 +4,8 @@ if (WEBGL.isWebGLAvailable() === false) {
 }
 
 // SETTINGS
-var maxFrameRate = 30;
+const maxFrameRate = 30;
+const tileSize = 50;
 
 // Internal vars
 var camera, scene, renderer;
@@ -14,7 +15,7 @@ var camera, scene, renderer;
 function initCanvas() {
     // camera, scene, renderer
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.set( 1000, 1000, 1000 );
+    camera.position.set( 0, 1000, 1000 );
     camera.lookAt(0,0,0);
 
     scene = new THREE.Scene();
@@ -34,11 +35,11 @@ function initCanvas() {
     scene.add(directionalLight);
 
     // helper lines
-    var gridHelper = new THREE.GridHelper( 1000, 20 );
+    var gridHelper = new THREE.GridHelper( tileSize*20, 20 );
     scene.add( gridHelper );
-    drawLine(0, 0, 0, 1000,    0,    0, 0xff0000);
-    drawLine(0, 0, 0,    0, 1000,    0, 0x0000ff);
-    drawLine(0, 0, 0,    0,    0, 1000, 0x00ff00);
+    scene.add( drawLine(0, 0, 0, 1000,    0,    0, 0xff0000) );
+    scene.add( drawLine(0, 0, 0,    0, 1000,    0, 0x0000ff) );
+    scene.add( drawLine(0, 0, 0,    0,    0, 1000, 0x00ff00) );
 
     // INIT MANAGERS
     game = new game();          // Init Game Manager
@@ -85,16 +86,14 @@ function onWindowResize() {
 
 
 function drawLine(x1, y, z1, x2, y2, z2, _color) {
-    var material = new THREE.LineBasicMaterial({
-        color: _color
-    });
-    
-    var geometry = new THREE.Geometry();
-    geometry.vertices.push(
-        new THREE.Vector3( x1, y, z1 ),
-        new THREE.Vector3( x2, y2, z2 )
-    );
-    
-    var line = new THREE.Line( geometry, material );
-    scene.add( line );
+    let lineGeometry = new THREE.Geometry();
+    lineGeometry.vertices.push(new THREE.Vector3( x1, y, z1 ),new THREE.Vector3( x2, y2, z2 ));
+    let lineMaterial = new THREE.LineBasicMaterial({color: _color});
+    return new THREE.Line( lineGeometry, lineMaterial );
+}
+
+function createBox(x, y, z, _color) {
+    let boxGeo = new THREE.BoxBufferGeometry( x, y, z );
+    let boxMaterial = new THREE.MeshBasicMaterial( { color: _color, opacity: 0.5, transparent: true } );
+    return new THREE.Mesh( boxGeo, boxMaterial );
 }

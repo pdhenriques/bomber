@@ -6,7 +6,10 @@ Author: Muad
 
 
 ##### TO DO ####
-
+ 0. Add empty Three.JS project
+ 1. Define player
+ 2. Spawn player placeholder
+ 3. Move player placeholder
 
 ##### END OF TO DO ####
 

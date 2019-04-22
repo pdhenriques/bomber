@@ -1,9 +1,11 @@
 class game {
     
     constructor() {
-        console.log('new game!');
-        this.state = 'setup';           // { setup, run, pause, over }
+        console.log('Constructor: New game!');
+        this.state = 'run';           // { setup, run, pause, over }
         
+        this.player1 = new player();
+        scene.add(this.player1.pawn);
     }
 
     update() {
