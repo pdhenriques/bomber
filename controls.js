@@ -18,10 +18,13 @@ class inputs {
         this.orbit.minDistance = 100;
         this.orbit.maxDistance = 9000;
         this.orbit.maxPolarAngle = Math.PI / 2;
-        this.orbit.target.set(0, 0, 0);
         this.orbit.rotateSpeed = 0.15;
         this.orbit.zoomSpeed   = 0.15;
         this.orbit.panSpeed    = 0.15;
+
+        // camera
+        camera.position.set( (boardWidth/2-0.5)*tileSize, 1500, boardHeight*tileSize );
+        this.orbit.target.set((boardWidth/2-0.5)*tileSize,0,boardHeight/2*tileSize);
     }
 
     update() {
@@ -58,10 +61,10 @@ class inputs {
         if (game.state == 'run' || game.state == 'pause') {
             switch (event.keyCode) {
                 case 80: game.togglePause(); break; // p
-                case 87: game.player1.move(0, 0, -tileSize); break; // w
-                case 83: game.player1.move(0, 0, tileSize); break; // s
-                case 65: game.player1.move(-tileSize, 0, 0); break; // a
-                case 68: game.player1.move(tileSize, 0, 0); break; // d
+                case 87: game.player1.move(0, 0, -1); break; // w
+                case 83: game.player1.move(0, 0, 1); break; // s
+                case 65: game.player1.move(-1, 0, 0); break; // a
+                case 68: game.player1.move(1, 0, 0); break; // d
             }
         }
     }

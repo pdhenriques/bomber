@@ -11,6 +11,7 @@ Author: Muad
  2. Spawn player placeholder
  3. Move player placeholder
  4. Spawn some walls
+ 5. Define gamestate
 
 ##### END OF TO DO ####
 

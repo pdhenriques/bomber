@@ -6,6 +6,8 @@ if (WEBGL.isWebGLAvailable() === false) {
 // SETTINGS
 const maxFrameRate = 30;
 const tileSize = 50;
+const boardWidth = 21;
+const boardHeight = 21;
 
 // Internal vars
 var camera, scene, renderer;
@@ -15,8 +17,8 @@ var camera, scene, renderer;
 function initCanvas() {
     // camera, scene, renderer
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.set( 0, 1500, 500 );
-    camera.lookAt(0,0,0);
+    // camera.position.set( boardWidth/2*tileSize, 1500, boardHeight*tileSize );
+    // camera.lookAt(boardWidth/2*tileSize,0,boardHeight/2*tileSize);
 
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0x333333);
@@ -35,15 +37,17 @@ function initCanvas() {
     scene.add(directionalLight);
 
     // helper lines
-    var gridHelper = new THREE.GridHelper( tileSize*21, 21 );
+    var gridHelper = new THREE.GridHelper( tileSize*Math.max(boardWidth,boardHeight), Math.max(boardWidth,boardHeight) );
+    gridHelper.translateX(tileSize*(Math.max(boardWidth,boardHeight)-1)/2);
     gridHelper.translateY(-tileSize/2);
+    gridHelper.translateZ(tileSize*(Math.max(boardWidth,boardHeight)-1)/2);
     scene.add( gridHelper );
     scene.add( drawLine(0, 0, 0, 1000,    0,    0, 0xff0000) );
     scene.add( drawLine(0, 0, 0,    0, 1000,    0, 0x0000ff) );
     scene.add( drawLine(0, 0, 0,    0,    0, 1000, 0x00ff00) );
 
     // INIT MANAGERS
-    game = new game();          // Init Game Manager
+    game = new game(boardWidth,boardHeight);          // Init Game Manager
     UI = new UI();              // Init UI Manager
     stats = new stats();        // Init Stats Manager
     backend = new backend();    // Init Backend Manager
@@ -86,9 +90,9 @@ function onWindowResize() {
 /////////////////////////////////////////////////////////
 
 
-function drawLine(x1, y, z1, x2, y2, z2, _color) {
+function drawLine(x1, y1, z1, x2, y2, z2, _color) {
     let lineGeometry = new THREE.Geometry();
-    lineGeometry.vertices.push(new THREE.Vector3( x1, y, z1 ),new THREE.Vector3( x2, y2, z2 ));
+    lineGeometry.vertices.push(new THREE.Vector3( x1, y1, z1 ),new THREE.Vector3( x2, y2, z2 ));
     let lineMaterial = new THREE.LineBasicMaterial({color: _color});
     return new THREE.Line( lineGeometry, lineMaterial );
 }
