@@ -12,6 +12,8 @@ Author: Muad
  3. Move player placeholder
  4. Spawn some walls
  5. Define gamestate
-
+ 6. Collide with walls
+ 7. 2 player local
+ 
 ##### END OF TO DO ####
 

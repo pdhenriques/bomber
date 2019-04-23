@@ -61,10 +61,14 @@ class inputs {
         if (game.state == 'run' || game.state == 'pause') {
             switch (event.keyCode) {
                 case 80: game.togglePause(); break; // p
-                case 87: game.player1.move(0, 0, -1); break; // w
-                case 83: game.player1.move(0, 0, 1); break; // s
-                case 65: game.player1.move(-1, 0, 0); break; // a
-                case 68: game.player1.move(1, 0, 0); break; // d
+                case 87: game.move(1, 0, 0,-1); break; // w
+                case 83: game.move(1, 0, 0, 1); break; // s
+                case 65: game.move(1,-1, 0, 0); break; // a
+                case 68: game.move(1, 1, 0, 0); break; // d
+                case 38: game.move(2, 0, 0,-1); break; // ^
+                case 40: game.move(2, 0, 0, 1); break; // v
+                case 37: game.move(2,-1, 0, 0); break; // <
+                case 39: game.move(2, 1, 0, 0); break; // >
             }
         }
     }

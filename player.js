@@ -1,8 +1,8 @@
 class player {
 
-    constructor() {
+    constructor(x, y, z) {
         console.log('Constructor: New player!');
-        this.position = new THREE.Vector3( 1, 0, 1 );
+        this.position = new THREE.Vector3( x, y, z );
         this.pawn = createBox(tileSize,tileSize,tileSize,0x00ffff);
         this.updateWorldPosition();
     }
@@ -12,10 +12,12 @@ class player {
     }
 
     move(x, y, z) {
-        this.position.x += x;
-        this.position.y += y;
-        this.position.z += z;
-        this.updateWorldPosition();
+        if(game.board[this.position.z + z][this.position.x + x] === '.') {
+            this.position.x += x;
+            this.position.y += y;
+            this.position.z += z;
+            this.updateWorldPosition();
+        }
     }
 
     updateWorldPosition() {
