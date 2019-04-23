@@ -6,6 +6,7 @@ class game {
         
         this.player1 = new player();
         scene.add(this.player1.pawn);
+        this.spawnWalls();
     }
 
     update() {
@@ -46,4 +47,19 @@ class game {
         }
     }
 
+    spawnWalls() {
+        let wallGeo = new THREE.BoxBufferGeometry( tileSize, tileSize, tileSize );
+        let wallMaterial = new THREE.MeshBasicMaterial( { color: 0xcccccc, opacity: 0.9, transparent: true } );
+        
+        for (let i = -10; i < 11; i++) {
+            for (let j = -10; j < 11; j++) {
+                if (Math.abs(i)==10 || Math.abs(j)==10 || (i%2==0 && j%2==0)) {
+                    let wall = new THREE.Mesh( wallGeo, wallMaterial );
+                    wall.position.x = i * tileSize;
+                    wall.position.z = j * tileSize;
+                    scene.add(wall);
+                }
+            }
+        }
+    }
 }

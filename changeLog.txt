@@ -10,6 +10,7 @@ Author: Muad
  1. Define player
  2. Spawn player placeholder
  3. Move player placeholder
+ 4. Spawn some walls
 
 ##### END OF TO DO ####
 

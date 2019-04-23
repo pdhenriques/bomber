@@ -15,7 +15,7 @@ var camera, scene, renderer;
 function initCanvas() {
     // camera, scene, renderer
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.set( 0, 1000, 1000 );
+    camera.position.set( 0, 1500, 500 );
     camera.lookAt(0,0,0);
 
     scene = new THREE.Scene();
@@ -35,7 +35,8 @@ function initCanvas() {
     scene.add(directionalLight);
 
     // helper lines
-    var gridHelper = new THREE.GridHelper( tileSize*20, 20 );
+    var gridHelper = new THREE.GridHelper( tileSize*21, 21 );
+    gridHelper.translateY(-tileSize/2);
     scene.add( gridHelper );
     scene.add( drawLine(0, 0, 0, 1000,    0,    0, 0xff0000) );
     scene.add( drawLine(0, 0, 0,    0, 1000,    0, 0x0000ff) );

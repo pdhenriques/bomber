@@ -58,10 +58,10 @@ class inputs {
         if (game.state == 'run' || game.state == 'pause') {
             switch (event.keyCode) {
                 case 80: game.togglePause(); break; // p
-                case 87: game.player1.move(0, 0, -tileSize, tileSize); break; // w
-                case 83: game.player1.move(0, 0, tileSize, tileSize); break; // s
-                case 65: game.player1.move(-tileSize, 0, 0, tileSize); break; // a
-                case 68: game.player1.move(tileSize, 0, 0, tileSize); break; // d
+                case 87: game.player1.move(0, 0, -tileSize); break; // w
+                case 83: game.player1.move(0, 0, tileSize); break; // s
+                case 65: game.player1.move(-tileSize, 0, 0); break; // a
+                case 68: game.player1.move(tileSize, 0, 0); break; // d
             }
         }
     }
