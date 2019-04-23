@@ -7,7 +7,7 @@ if (WEBGL.isWebGLAvailable() === false) {
 const maxFrameRate = 30;
 const tileSize = 50;
 const boardWidth = 21;
-const boardHeight = 11;
+const boardHeight = 21;
 
 // Internal vars
 var camera, scene, renderer;

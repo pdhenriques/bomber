@@ -65,10 +65,12 @@ class inputs {
                 case 83: game.move(1, 0, 0, 1); break; // s
                 case 65: game.move(1,-1, 0, 0); break; // a
                 case 68: game.move(1, 1, 0, 0); break; // d
+                case 32: game.placeBomb(1); break; // space
                 case 38: game.move(2, 0, 0,-1); break; // ^
                 case 40: game.move(2, 0, 0, 1); break; // v
                 case 37: game.move(2,-1, 0, 0); break; // <
                 case 39: game.move(2, 1, 0, 0); break; // >
+                case 17: game.placeBomb(2); break; // control
             }
         }
     }

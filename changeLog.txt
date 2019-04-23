@@ -14,6 +14,7 @@ Author: Muad
  5. Define gamestate
  6. Collide with walls
  7. 2 player local
+ 8. Spawn bombs
  
 ##### END OF TO DO ####
 

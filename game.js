@@ -71,6 +71,15 @@ class game {
         }
     }
 
+    placeBomb(player) {
+        if ( player == 1 ) {
+            this.player1.placeBomb();
+        } else
+        if ( player == 2 ) {
+            this.player2.placeBomb();
+        }
+    }
+
     spawnWalls(width, height) {
         let wallGeo = new THREE.BoxBufferGeometry( tileSize, tileSize, tileSize );
         let wallMaterial = new THREE.MeshBasicMaterial( { color: 0xcccccc, opacity: 0.9, transparent: true } );

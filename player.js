@@ -3,7 +3,7 @@ class player {
     constructor(x, y, z) {
         console.log('Constructor: New player!');
         this.position = new THREE.Vector3( x, y, z );
-        this.pawn = createBox(tileSize,tileSize,tileSize,0x00ffff);
+        this.pawn = this.createPawn(tileSize,tileSize,tileSize,0x00ffff);
         this.updateWorldPosition();
     }
 
@@ -27,4 +27,18 @@ class player {
         this.pawn.position.divideScalar(tileSize).floor().multiplyScalar(tileSize);
     }
 
+    placeBomb() {
+        console.log('bomb');
+        let bombGeo = new THREE.SphereBufferGeometry( 20 );
+        let bombMaterial = new THREE.MeshPhongMaterial( { color: 0xaa3333 } );
+        let bomb =  new THREE.Mesh( bombGeo, bombMaterial );
+        bomb.position.copy(this.pawn.position);
+        scene.add(bomb);
+    }
+
+    createPawn(x, y, z, _color) {
+        let pawnGeo = new THREE.BoxBufferGeometry( x, y, z );
+        let pawnMaterial = new THREE.MeshPhongMaterial( { color: _color, opacity: 0.5, transparent: true, depthWrite: false } );
+        return new THREE.Mesh( pawnGeo, pawnMaterial );
+    }
 }
