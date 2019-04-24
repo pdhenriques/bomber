@@ -15,6 +15,7 @@ Author: Muad
  6. Collide with walls
  7. 2 player local
  8. Spawn bombs
+ 9. Destroy bombs on timer
  
 ##### END OF TO DO ####
 

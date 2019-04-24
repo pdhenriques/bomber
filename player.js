@@ -28,12 +28,8 @@ class player {
     }
 
     placeBomb() {
-        console.log('bomb');
-        let bombGeo = new THREE.SphereBufferGeometry( 20 );
-        let bombMaterial = new THREE.MeshPhongMaterial( { color: 0xaa3333 } );
-        let bomb =  new THREE.Mesh( bombGeo, bombMaterial );
-        bomb.position.copy(this.pawn.position);
-        scene.add(bomb);
+        let b = new bomb(this.pawn.position, 3000);
+        scene.add(b.pawn);
     }
 
     createPawn(x, y, z, _color) {
