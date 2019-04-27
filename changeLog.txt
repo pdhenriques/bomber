@@ -16,6 +16,6 @@ Author: Muad
  7. 2 player local
  8. Spawn bombs
  9. Destroy bombs on timer
- 
+10. Test WebSockets
 ##### END OF TO DO ####
 

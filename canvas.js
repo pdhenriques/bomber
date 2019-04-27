@@ -17,8 +17,8 @@ var camera, scene, renderer;
 function initCanvas() {
     // camera, scene, renderer
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
-    // camera.position.set( boardWidth/2*tileSize, 1500, boardHeight*tileSize );
-    // camera.lookAt(boardWidth/2*tileSize,0,boardHeight/2*tileSize);
+    camera.position.set( (boardWidth/2-0.5)*tileSize, 1500, boardHeight*tileSize );
+    camera.lookAt(boardWidth/2*tileSize,0,boardHeight/2*tileSize);
 
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0x333333);

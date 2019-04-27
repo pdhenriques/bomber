@@ -6,12 +6,10 @@ class game {
         this.height = height;
         this.state = 'run';           // { setup, run, pause, over }
         this.board = this.createEmptyBoard(width, height);
-        this.player1 = new player(1, 0, 1);
-        scene.add(this.player1.pawn);
-        this.player2 = new player(width-2, 0, height-2);
-        scene.add(this.player2.pawn);
+        this.player = new player(1, 0, 1);
+        scene.add(this.player.pawn);
         this.spawnWalls(width, height);
-        this.print();
+        // this.print();
     }
 
     update() {
@@ -26,8 +24,7 @@ class game {
                     }
                 }
             }
-            this.board[this.player1.position.z][this.player1.position.x] = 'p1';
-            this.board[this.player2.position.z][this.player2.position.x] = 'p2';
+            this.board[this.player.position.z][this.player.position.x] = 'p1';
             
         } else if (this.state === 'start') {
             
@@ -62,22 +59,12 @@ class game {
         }
     }
 
-    move(player, x, y, z) {
-        if ( player == 1 ) {
-            this.player1.move(x, y, z);
-        } else
-        if ( player == 2 ) {
-            this.player2.move(x, y, z);
-        }
+    move(x, y, z) {
+            this.player.move(x, y, z);
     }
 
-    placeBomb(player) {
-        if ( player == 1 ) {
-            this.player1.placeBomb();
-        } else
-        if ( player == 2 ) {
-            this.player2.placeBomb();
-        }
+    placeBomb() {
+        this.player.placeBomb();
     }
 
     spawnWalls(width, height) {
