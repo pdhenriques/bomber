@@ -1,19 +1,23 @@
-/*{
-    id: XXXXXXXXXXXXXXXXXXX,
-    name: 'Muad',
-    position: { x, y, z },
+/*
+let data = {
+    id: XXXXXXX,
+    name: 'player0',
+    position: { x: x, y: y, z: z },
     score: 0,
     color: 0x00FFFF
-}*/
+}
+*/
 
 class player {
 
-    constructor(x, y, z) {
+    constructor( data ) {
         console.log('Constructor: New player!');
-        this.id = '';
-        this.name = '';
-        this.position = new THREE.Vector3( x, y, z );
-        this.pawn = this.createPawn(tileSize,tileSize,tileSize,0x00ffff);
+        this.id = data.id || 0;
+        this.name = data.name || 'player' + rand(100);
+        this.position = new THREE.Vector3( data.position.x, data.position.y, data.position.z );
+        this.score = data.score || 0;
+        this.color = data.color || 0x00ffff;
+        this.pawn = this.createPawn(tileSize,tileSize,tileSize, this.color);
         this.updateWorldPosition();
     }
 
@@ -56,5 +60,16 @@ class player {
             score: this.score,
             color: this.color
         }
+    }
+
+    set(data) {
+        this.id = data.id || this.id;
+        this.name = data.name || this.name;
+        this.position.x = data.position.x || this.position.x;
+        this.position.y = data.position.y || this.position.y;
+        this.position.z = data.position.z || this.position.z;
+        this.score = data.score || this.score;
+        this.color = data.color || this.color;
+        this.updateWorldPosition();
     }
 }

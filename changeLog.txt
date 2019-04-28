@@ -17,5 +17,7 @@ Author: Muad
  8. Spawn bombs
  9. Destroy bombs on timer
 10. Test WebSockets
+11. Multiplayer movement
+
 ##### END OF TO DO ####
 

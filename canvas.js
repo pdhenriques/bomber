@@ -102,3 +102,13 @@ function createBox(x, y, z, _color) {
     let boxMaterial = new THREE.MeshBasicMaterial( { color: _color, opacity: 0.5, transparent: true } );
     return new THREE.Mesh( boxGeo, boxMaterial );
 }
+
+function rand(...args) {
+    if (args.length === 1) {
+        return Math.floor(Math.random() * args[0]);
+    }
+    if (args.length === 2) {
+        return Math.floor(Math.random() * (args[1] - args[0] + 1)) + args[0];
+    }
+    return 0;
+}

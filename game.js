@@ -6,9 +6,10 @@ class game {
         this.height = height;
         this.state = 'run';           // { setup, run, pause, over }
         this.board = this.createEmptyBoard(width, height);
-        this.player = new player(1, 0, 1);
-        scene.add(this.player.pawn);
         this.spawnWalls(width, height);
+        this.player = new player({position: { x:1, y:0, z:1 }});
+        scene.add(this.player.pawn);
+        this.players = {};
         // this.print();
     }
 
@@ -17,14 +18,14 @@ class game {
         // console.log("frame")
         if (this.state === 'run') {
             
-            for (let i = 0; i < this.height; i++) {
-                for (let j = 0; j < this.width; j++) {
-                    if (this.board[i][j] == 'p1' || this.board[i][j] == 'p2') {
-                        this.board[i][j] = '.';
-                    }
-                }
-            }
-            this.board[this.player.position.z][this.player.position.x] = 'p1';
+            // for (let i = 0; i < this.height; i++) {
+            //     for (let j = 0; j < this.width; j++) {
+            //         if (this.board[i][j] == 'p' || this.board[i][j] == 'o') {
+            //             this.board[i][j] = '.';
+            //         }
+            //     }
+            // }
+            // this.board[this.player.position.z][this.player.position.x] = 'p';
             
         } else if (this.state === 'start') {
             
@@ -60,7 +61,8 @@ class game {
     }
 
     move(x, y, z) {
-            this.player.move(x, y, z);
+        this.player.move(x, y, z);
+        backend.broadcast('playerUpdate', this.player.get());
     }
 
     placeBomb() {
@@ -105,5 +107,23 @@ class game {
             str += '\n';
         }
         console.log(str);
+    }
+
+    addPlayer(data) {
+        let id = data.id;
+        let newPlayer = new player(data);
+        this.players[id] = newPlayer;
+        scene.add(newPlayer.pawn);
+    }
+
+    updatePlayer(data) {
+        let updPlayer = this.players[data.id];
+        updPlayer.set(data);
+    }
+
+    removePlayer(id) {
+        let remPlayer = this.players[id];
+        scene.remove(remPlayer.pawn);
+        delete this.players[id]
     }
 }
